@@ -1,9 +1,9 @@
 import React from "react";
 import {NavLink, Route, Routes} from "react-router-dom";
 import RoomsCreate from "./room/RoomsCreate";
-import Rooms from "./routes/Rooms";
-import Movie from "./routes/Movie";
-import Show from "./routes/Show";
+import Rooms from "./room/Rooms";
+import Movie from "./movie/Movie";
+import Show from "./room/Show";
 import MovieCreate from "./movie/MovieCreate";
 import ShowCreate from "./show/ShowCreate";
 import RoomsUpdate from "./room/RoomsUpdate";
@@ -11,6 +11,7 @@ import MovieUpdate from "./movie/MovieUpdate";
 import ShowUpdate from "./show/ShowUpdate";
 import Buy from "./ticket/Buy";
 import Ticket from "./ticket/Ticket";
+import AllRoutes from "./routes/AllRoutes";
 
 function AppLayout() {
     return (
@@ -39,29 +40,7 @@ function AppLayout() {
                </nav>
            </header>
 
-           <div className={'container-fluid'}>
-               <div className={'row'}>
-                   <main className={'col mt-3'}>
-                       <Routes>
-                           <Route path={'/'} element={<Rooms />} />
-                           <Route path="/rooms" element={<Rooms  />} />
-                           <Route path="/rooms/create" element={<RoomsCreate />} />
-                           <Route path="/rooms/update/:roomID" element={<RoomsUpdate />} />
-                           <Route path="/movie" element={<Movie  />} />
-                           <Route path="/movie/create" element={<MovieCreate />} />
-                           <Route path="/movie/update/:movieID" element={<MovieUpdate />} />
-                           <Route path="/show" element={<Show />} />
-                           <Route path="/show/create" element={<ShowCreate />} />
-                           <Route path="/show/update/:showID" element={<ShowUpdate />} />
-                           <Route path="show/buy/:showID" element={<Buy />} />
-                           <Route path="/show/:showID/ticket/:seatID" element={<Ticket />} />
-                           <Route path="*" element={ <main style={{ padding: "1rem", fontSize:"20px" }}>
-                               <p>Brak żądanej strony!</p>
-                           </main>} />
-                       </Routes>
-                   </main>
-               </div>
-           </div>
+            <AllRoutes />
        </>
 );
 }

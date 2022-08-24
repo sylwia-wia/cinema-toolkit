@@ -12,7 +12,7 @@ export default createReducer(initialState, (builder) => {
             state[action.payload.roomID] = action.payload;
         })
         .addCase(deleteRoom, (state, action) => {
-            delete state[action.payload];
+             delete state[action.payload];
         })
     }
 )
