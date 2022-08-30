@@ -1,13 +1,11 @@
-import React, {useLayoutEffect} from "react";
+import React from "react";
 import {Table} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {Pencil, Trash3} from 'react-bootstrap-icons';
 import {useDispatch, useSelector} from "react-redux";
 import {roomDelete} from "../redux/room/actions";
-import LoadingOverlay from 'react-loading-overlay'
 
-
-function Rooms(props) {
+function Rooms() {
 
     const rooms = useSelector((state) => state.room);
     const dispatch = useDispatch();
@@ -16,8 +14,6 @@ function Rooms(props) {
     function onClickRemoveHandler(roomID)  {
         return roomDelete(dispatch, roomID, isLoading.isLoading );
     }
-
-    console.log(isLoading)
 
     const rekordyTabeli = Object.values(rooms).map((room, index) => (
         <tr key={index}>
@@ -36,18 +32,10 @@ function Rooms(props) {
                     </Link>
                 </button>
                 <div>
-                    {isLoading.isLoading === true ?
-                        <button className="btn btn-btn-dark px-2 float-end" type="button" disabled>
-                            <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                            <span className="visually-hidden">Loading...</span>
-                            <Trash3/>
-                        </button>
-                        :
-                        <button onClick={() => onClickRemoveHandler(room.roomID)}
-                                className="btn btn-btn-dark px-2 float-end">
-                            <Trash3/>
-                        </button>
-                    }
+                    <button onClick={() => onClickRemoveHandler(room.roomID)}
+                            className="btn btn-btn-dark px-2 float-end">
+                        <Trash3/>
+                    </button>
                 </div>
             </td>
          </tr>
@@ -75,18 +63,20 @@ function Rooms(props) {
                 </tbody>
 
             </Table>
+            {isLoading.isLoading === true ?
+                <div className={'row'}>
+                    <div className={'col-12 text-center'}>
+                        <span className="spinner-border spinner-border-sm"  style={{width: '3rem', height: '3rem'}} role="status" aria-hidden="true"></span>
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+                : ''
+            }
             <p></p>
 
         </>
     );
 
 }
-// const mapStateToProps = state => {
-//     console.log(state.app.isLoading);
-//     return {
-//         isActive: state.app.isLoading
-//     }
-// }
 
-// export default connect(mapStateToProps)(Rooms);
 export default Rooms;

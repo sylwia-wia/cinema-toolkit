@@ -1,16 +1,5 @@
 import React from "react";
-import {NavLink, Route, Routes} from "react-router-dom";
-import RoomsCreate from "./room/RoomsCreate";
-import Rooms from "./room/Rooms";
-import Movie from "./movie/Movie";
-import Show from "./room/Show";
-import MovieCreate from "./movie/MovieCreate";
-import ShowCreate from "./show/ShowCreate";
-import RoomsUpdate from "./room/RoomsUpdate";
-import MovieUpdate from "./movie/MovieUpdate";
-import ShowUpdate from "./show/ShowUpdate";
-import Buy from "./ticket/Buy";
-import Ticket from "./ticket/Ticket";
+import {NavLink} from "react-router-dom";
 import AllRoutes from "./routes/AllRoutes";
 
 function AppLayout() {

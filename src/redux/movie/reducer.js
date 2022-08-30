@@ -6,7 +6,6 @@ const initialState = {}
 export default createReducer(initialState, (builder) => {
         builder
             .addCase(createMovie, (state, action) => {
-                console.log(action.payload);
                 state[action.payload.movieID] = action.payload;
             })
             .addCase(updateMovie, (state, action) => {

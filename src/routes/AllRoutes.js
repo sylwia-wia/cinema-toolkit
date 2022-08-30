@@ -5,7 +5,7 @@ import RoomsUpdate from "../room/RoomsUpdate";
 import Movie from "../movie/Movie";
 import MovieCreate from "../movie/MovieCreate";
 import MovieUpdate from "../movie/MovieUpdate";
-import Show from "../room/Show";
+import Show from "../show/Show";
 import ShowCreate from "../show/ShowCreate";
 import ShowUpdate from "../show/ShowUpdate";
 import Buy from "../ticket/Buy";

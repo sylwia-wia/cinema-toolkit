@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Table} from "react-bootstrap";
 import {Link} from "react-router-dom";
-import FilteredShows from "../show/FilteredShows";
+import FilteredShows from "./FilteredShows";
 import { useSelector} from "react-redux";
 
 export default function Show() {

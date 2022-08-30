@@ -12,12 +12,13 @@ export const roomCreate = (state, payload) => {
     return createRoom(payload);
 }
 
-export  const roomDelete = (dispatch, state, roomID) => {
-    dispatch(setLoader(true))
-
-    setTimeout(()=>{
-        dispatch(deleteRoom(roomID));
+export const roomDelete =  (dispatch, getState) => {
+    console.log(dispatch);
+    console.log(getState);
+        dispatch(setLoader(true))
+        setTimeout(()=>{
         dispatch(setLoader(false))
+        dispatch(deleteRoom(getState));
     },2000)
 
 }
