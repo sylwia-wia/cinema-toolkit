@@ -1,7 +1,7 @@
 import {createAction} from "@reduxjs/toolkit";
 
-export const loader = createAction('app/loader');
+export const LOADER = createAction('APP/LOADER');
 
-export const setLoader = (payload) => {
-    return loader(payload);
+export const setLoader = (payload) => (dispatch) => {
+    dispatch(LOADER(payload));
 }

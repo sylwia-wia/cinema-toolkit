@@ -2,13 +2,12 @@ import {useNavigate, useParams} from "react-router-dom";
 import ShowForm from "./ShowForm";
 import React from "react";
 import {showUpdate} from "../redux/show/actions";
-import {useDispatch, useSelector, useStore} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 export default function ShowUpdate() {
     const navigate = useNavigate();
     const {showID} = useParams();
     const dispatch = useDispatch();
-    const store = useStore();
     const show = useSelector(state => state.show[showID]);
     const rooms = Object.values(useSelector(state => state.room));
     const movies = Object.values(useSelector(state => state.movie));
@@ -16,7 +15,7 @@ export default function ShowUpdate() {
 
     function onFormSubmitHandler(formData) {
         formData.showID = show.showID;
-        dispatch(showUpdate(store.getState(), formData));
+        dispatch(showUpdate(formData));
         navigate('/show')
     }
 

@@ -1,38 +1,37 @@
 import moment from "moment/moment";
 import {createAction} from "@reduxjs/toolkit";
 
-export const createShow = createAction('show/create');
-export const updateShow = createAction('show/update');
-export const deleteShow = createAction('show/delete');
-export const buyTicket = createAction('show/buy');
+export const CREATE_SHOW = createAction('SHOW/CREATE');
+export const UPDATE_SHOW = createAction('SHOW/UPDATE');
+export const DELETE_SHOW = createAction('SHOW/DELETE');
+export const BUY_TICKET = createAction('SHOW/BUY');
 
 export const getMovieByID = (state, id) => state.movie[id];
 export const getRoomByID = (state, id) => state.room[id];
 
-export const showCreate = (state, payload) => {
-    payload.showID = IDGenerator('show', state);
-    payload = prepareShowData(state, payload);
-
-    return createShow(payload);
+export const showCreate = (payload) => (dispatch, getState) => {
+    payload.showID = IDGenerator('show', getState());
+    payload = prepareShowData(getState, payload);
+    dispatch(CREATE_SHOW(payload));
 }
 
-export const showUpdate = (state, payload) => {
-    payload = prepareShowData(state, payload);
-    return updateShow(payload);
+export const showUpdate = (payload) => (dispatch, getState) => {
+    payload = prepareShowData(getState, payload);
+    dispatch(UPDATE_SHOW(payload));
 }
 
-export const showDelete = (payload) => {
-    return deleteShow(payload);
+export const showDelete = (payload) => (dispatch) => {
+    dispatch(DELETE_SHOW(payload));
 }
 
-export const ticketBuy = (state, showID, seatID) => {
+export const ticketBuy = (payload) => (dispatch) => {
+    const {showID, seatID} = payload;
     const ticketID = Math.random().toString(36).substring(7);
-
-    return buyTicket({
+    dispatch(BUY_TICKET({
         showID,
         seatID,
         ticketID
-    });
+    }));
 };
 
 export function IDGenerator(entityName, state) {
@@ -50,9 +49,9 @@ export function IDGenerator(entityName, state) {
     return id;
 }
 
-function prepareShowData(state, payload) {
-    const movie = getMovieByID(state, payload.movieID);
-    const room = getRoomByID(state, payload.roomID);
+function prepareShowData(getState, payload) {
+    const movie = getMovieByID(getState(), payload.movieID);
+    const room = getRoomByID(getState(), payload.roomID);
     const dateTime = payload.dateTime;
 
     payload.movie = {

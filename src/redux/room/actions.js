@@ -2,23 +2,22 @@ import {IDGenerator} from "../show/actions";
 import {createAction} from "@reduxjs/toolkit";
 import {setLoader} from "../app/actions";
 
-export const createRoom = createAction('room/create');
-export const updateRoom = createAction('room/update');
-export const deleteRoom = createAction('room/delete');
+export const CREATE_ROOM = createAction('ROOM/CREATE');
+export const UPDATE_ROOM = createAction('ROOM/UPDATE');
+export const DELETE_ROOM = createAction('ROOM/DELETE');
 
-export const roomCreate = (state, payload) => {
-    payload.roomID = IDGenerator('room', state);
-
-    return createRoom(payload);
+export const roomCreate = (payload) => (dispatch, getState) => {
+    payload.roomID = IDGenerator('room', getState());
+    dispatch(CREATE_ROOM(payload));
 }
 
-export const roomDelete =  (dispatch, getState) => {
-    console.log(dispatch);
-    console.log(getState);
+//test of using react thunk
+export const roomDelete =  (roomID) => (dispatch) => {
         dispatch(setLoader(true))
-        setTimeout(()=>{
-        dispatch(setLoader(false))
-        dispatch(deleteRoom(getState));
-    },2000)
+        setTimeout(() => {
+            dispatch(setLoader(false))
+            dispatch(DELETE_ROOM(roomID));
+        }, 2000)
+    }
 
-}
+

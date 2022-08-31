@@ -24,7 +24,6 @@ export default function ShowDetail(props) {
                     onClick: () => {
                         props.onFormSubmitHAndler(showID, seatID);
                         navigate(`/show/${showID}/ticket/${seatID}`)
-
                     }
                 },
                 {

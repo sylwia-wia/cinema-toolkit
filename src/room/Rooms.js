@@ -6,13 +6,12 @@ import {useDispatch, useSelector} from "react-redux";
 import {roomDelete} from "../redux/room/actions";
 
 function Rooms() {
-
     const rooms = useSelector((state) => state.room);
     const dispatch = useDispatch();
     const isLoading = useSelector((state) => state.app);
 
     function onClickRemoveHandler(roomID)  {
-        return roomDelete(dispatch, roomID, isLoading.isLoading );
+        dispatch(roomDelete(roomID));
     }
 
     const rekordyTabeli = Object.values(rooms).map((room, index) => (

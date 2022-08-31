@@ -1,17 +1,17 @@
 import {createReducer} from "@reduxjs/toolkit";
-import {createRoom, deleteRoom, updateRoom} from "./actions";
+import {CREATE_ROOM, DELETE_ROOM, UPDATE_ROOM} from "./actions";
 
 const initialState = {};
 
 export default createReducer(initialState, (builder) => {
     builder
-        .addCase(createRoom, (state, action) => {
+        .addCase(CREATE_ROOM, (state, action) => {
             state[action.payload.roomID] = action.payload;
         })
-        .addCase(updateRoom, (state, action) => {
+        .addCase(UPDATE_ROOM, (state, action) => {
             state[action.payload.roomID] = action.payload;
         })
-        .addCase(deleteRoom, (state, action) => {
+        .addCase(DELETE_ROOM, (state, action) => {
              delete state[action.payload];
         })
     }
